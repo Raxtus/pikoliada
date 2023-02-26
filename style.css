@@ -1,0 +1,23 @@
+body
+{
+    background: black;
+}
+
+table
+{
+    background-color:black;
+    float: left;
+}
+
+td
+{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #1e1e1e;
+}
+
+div
+{
+	clear: both;
+}
