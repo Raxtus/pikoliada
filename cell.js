@@ -4,6 +4,24 @@ const cellsVerticaly = 10;
 const dotsHorizontaly = 5;
 const dotsVerticaly = 7;
 const dotsField = dotsHorizontaly * dotsVerticaly;
+const backgroundOn = "background:yellow";
+const backgrundOff = "background:#1e1e1e";
+
+const alphabet = []; // 5 x 7
+alphabet["A"] = "01110100011000111111100011000110001";
+alphabet["a"] = alphabet["A"];
+alphabet["B"] = "11110010010100101110010010100111110";
+alphabet["b"] = alphabet["B"];
+alphabet["C"] = "01110100011000010000100001000101110";
+alphabet["c"] = alphabet["C"];
+alphabet["D"] = "11110010010100101001010010100111110";
+alphabet["d"] = alphabet["D"];
+alphabet["E"] = "11111100001000011110100001000011111";
+alphabet["e"] = alphabet["E"];
+alphabet["F"] = "11111100001000011110100001000010000";
+alphabet["f"] = alphabet["F"];
+
+
 
 
 function createCells(element) {
@@ -53,52 +71,21 @@ function getDotCord(id) {
 function getCellNr(id) {
     return (id - id % dotsField) / dotsField;
 }
-
-function applyRawData(rawdata) {
-    let i;
-    let move;
-    move = dotsField * rawdata.charCodeAt(0);
-    move += cellsHorizontaly * dotsField * rawdata.charCodeAt(1);
-
-    let end = ((rawdata.length - 2) * 8) - ((rawdata.length - 2) * 8 % dotsField) / dotsField;
-
-    let cells = document.getElementsByTagName('td');
-    let byte;
-    let pointer = 2;
-    for (i = 0; i < end; i++) {
-        if ((i % 8) == 0) {
-            pointer++
-            byte = rawdata[pointer].charCodeAt(0);
-
-        }
-        console.log((byte >>> 6));
-
-        if ((byte >>> 6)) {
-
-            cells[move + i].setAttribute("style", "background:yellow");
-        }
-        else cells[move + i].setAttribute("style", "background:#1e1e1e");
-        byte = byte << 1;
-    }
-
-}
 function applyBools(bools) {
     let i;
     let move = 0;
-    move = dotsField * ((bools.charCodeAt(0)-48)*100 +(bools.charCodeAt(1)-48)*10 + (bools.charCodeAt(2)-48));
+    move = dotsField * ((bools.charCodeAt(0) - 48) * 100 + (bools.charCodeAt(1) - 48) * 10 + (bools.charCodeAt(2) - 48));
     console.log(move);
     let cells = document.getElementsByTagName('td');
     bools = bools.substring(3);
     console.log(bools);
 
-    for (i = 0; i < bools.length ; i++) {
+    for (i = 0; i < bools.length; i++) {
         console.log(bools[i]);
 
         if (bools[i] == '1')
-            cells[move + i].setAttribute("style", "background:yellow");
+            cells[move + i].setAttribute("style", backgroundOn);
         else
-            cells[move + i].setAttribute("style", "background:#1e1e1e");
+            cells[move + i].setAttribute("style", backgrundOff);
     }
-
 }
-
